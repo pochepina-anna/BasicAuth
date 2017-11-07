@@ -1,11 +1,13 @@
 package io.aerobatic.helpers;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,7 +21,7 @@ public class DriverSetUp {
 
     @BeforeClass
     public static void setUp() throws Exception{
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        ChromeDriverManager.getInstance().setup();
         server = new BrowserMobProxyServer();
         server.autoBasicAuthorization("auth-demo.aerobatic.io", "aerobatic", "aerobatic");
         server.start();
